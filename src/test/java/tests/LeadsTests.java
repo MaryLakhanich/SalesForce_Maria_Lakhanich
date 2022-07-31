@@ -34,7 +34,7 @@ public class LeadsTests extends BaseTest {
     }
 
     @Test
-    public void createLeadTest() throws InterruptedException {
+    public void createLeadTest() {
         loginPage.setUserName(USERNAME);
         loginPage.setPassword(PASSWORD);
         loginPage.clickLoginButton();
