@@ -9,21 +9,26 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeadsPage extends BasePage{
-    private final static By NEW_BUTTON = By.cssSelector("a[title=New]");
+public class LeadsPage extends EntityBasePage{
     private final static By ICON_LOCATOR = By.cssSelector("//img[@title='Leads']/parent::div");
 
     public LeadsPage(WebDriver driver) {
         super(driver);
     }
+    By lastNameInput = By.xpath("//input[@name='lastName']");
+    By companyInput = By.xpath("//input[@name='Company']");
+    By errorMessage=By.xpath("//li[@records-recordediterror_recordediterror]//a");
 
-    @Override
-    public void waitForPageLoaded() {
-        waitForElementDisplayed(NEW_BUTTON);
+    public void setLastName(String lastName) {
+        driver.findElement(lastNameInput).sendKeys(lastName);
     }
 
-    public void clickNewButton() {
-        driver.findElement(NEW_BUTTON).click();
+    public void setCompany(String company) {
+        driver.findElement(companyInput).sendKeys(company);
+    }
+
+    public String getErrorMessageText() {
+        return driver.findElement(errorMessage).getText();
     }
 
 }

@@ -2,9 +2,7 @@ package tests;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
-import org.testng.ITestListener;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LeadsPage;
