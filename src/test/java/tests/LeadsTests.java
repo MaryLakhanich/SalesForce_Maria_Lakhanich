@@ -1,9 +1,5 @@
 package tests;
 
-import com.github.javafaker.Faker;
-import enums.Industry;
-import enums.Rating;
-import enums.Salutation;
 import models.Lead;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -12,24 +8,26 @@ import org.testng.annotations.Test;
 import pages.LeadDetailsPage;
 import pages.LeadsPage;
 import pages.modals.NewLeadModal;
+import utils.ExpectedMessages;
+import utils.LeadFactory;
 
 public class LeadsTests extends BaseTest {
 
     private LeadsPage leadsPage;
     private NewLeadModal newLeadModal;
     private LeadDetailsPage leadDetailsPage;
-
+    private LeadFactory leadFactory;
     @BeforeClass
     public void initialise() {
         leadsPage = new LeadsPage(driver);
         newLeadModal = new NewLeadModal(driver);
         leadDetailsPage = new LeadDetailsPage(driver);
+        leadFactory = new LeadFactory();
     }
 
-
-    Faker faker = new Faker();
-    @Test
-    public void createLeadTest() throws InterruptedException {
+    @Test(dataProvider = "leadTestData")
+    public void createLeadTest(Lead newLead) {
+        loginPage.waitForPageLoaded();
         loginPage.setUserName(USERNAME);
         loginPage.setPassword(PASSWORD);
         loginPage.clickLoginButton();
@@ -37,51 +35,21 @@ public class LeadsTests extends BaseTest {
         homePage.openLeadsTab();
         leadsPage.waitForPageLoaded();
         leadsPage.clickNewButton();
-
-
-        Lead testLead = new Lead.LeadBuilder("New", faker.company().name())
-                .salutation(Salutation.MR)
-                .firstName(faker.name().firstName())
-                .middleName(faker.name().nameWithMiddle())
-                .website(faker.company()+".com")
-                .title(faker.job().title())
-                .email(faker.name().firstName()+"@mail.ru")
-                .phone(faker.phoneNumber().cellPhone())
-                .mobile(faker.phoneNumber().cellPhone())
-                .numberOfEmployees(faker.number().randomDigit())
-                .industry(Industry.BIOTECHNOLOGY)
-                .rating(Rating.WARM)
-                .street(faker.address().streetName())
-                .city(faker.address().city())
-                .state(faker.address().state())
-                .country(faker.address().country())
-                .zipCode(faker.address().countryCode())
-                .build();
-        newLeadModal.fillForm(testLead);
+        newLeadModal.fillForm(newLead);
         newLeadModal.clickSaveButton();
-        Assert.assertEquals(leadDetailsPage.getLeadInfo(), testLead);
+        leadDetailsPage.waitForPageLoaded();
+        Assert.assertEquals(homePage.getMessageText(), ExpectedMessages.expectedLeadMessageText(newLead.getSalutation().getChosenSalutation(), newLead.getFirstName(), newLead.getLastName()));
+        leadDetailsPage.clickDetailsButton();
+        leadDetailsPage.getLeadInfo();
+        Assert.assertEquals(leadDetailsPage.getLeadInfo(), newLead);
+        homePage.clickLogout();
     }
-
     @DataProvider
-    public Object[][]inputForNegativeLogInTest(){
+    public Object[][] leadTestData() {
         return new Object[][]{
-                {"","Samsung", "Name"},
-                {"Petrova","","Company"},
+                {leadFactory.createCompletelyFilledLead()},
+                {leadFactory.createLeadWithMinimItems()},
         };
-    }
-    @Test(dataProvider = "inputForNegativeLogInTest")
-    public void negativeLogInTests(String lastName, String company, String expectedErrorMessage){
-        loginPage.setUserName(USERNAME);
-        loginPage.setPassword(PASSWORD);
-        loginPage.clickLoginButton();
-        homePage.waitForPageLoaded();
-        homePage.openLeadsTab();
-        leadsPage.waitForPageLoaded();
-        leadsPage.clickNewButton();
-        leadsPage.setLastName(lastName);
-        leadsPage.setCompany(company);
-        newLeadModal.clickSaveButton();
-        Assert.assertEquals(leadsPage.getErrorMessageText(),expectedErrorMessage);
     }
 }
 

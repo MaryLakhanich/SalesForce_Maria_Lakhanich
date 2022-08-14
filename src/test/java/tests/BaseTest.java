@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -15,7 +16,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected HomePage homePage;
-    protected LeadsPage leadsPage;
+    protected Faker faker;
 
     protected final static String USERNAME = "amigo-10291-h7rm@force.com";
     protected final static String PASSWORD = "8467189178Qq";
@@ -30,6 +31,7 @@ public class BaseTest {
         testContext.setAttribute("driver", driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+        faker = new Faker();
     }
 
     @BeforeMethod(alwaysRun = true)

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LightningFormattedElement extends BaseElement {
 
-    String visibleTextLocator = "//div[contains(@class, 'active')]//span[text() = '%s' and @class='test-id__field-label']/ancestor::div[contains(@class, 'test-id__output-root')]//*[@data-output-element-id='output-field']";
+    private final static String visibleTextLocator = "//div[contains(@class, 'active')]//span[text() = '%s' and @class='test-id__field-label']/ancestor::div[contains(@class, 'test-id__output-root')]//*[@data-output-element-id='output-field']";
 
     public LightningFormattedElement(WebDriver driver, String label) {
         super(driver, label);

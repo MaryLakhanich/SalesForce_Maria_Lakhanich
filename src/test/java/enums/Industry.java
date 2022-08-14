@@ -43,12 +43,16 @@ public enum Industry {
     public String getIndustry() {
         return industry;
     }
+    public String getChosenIndustry(){
+        return this.industry;
+    }
     public static Industry fromString(String value) {
         for (Industry contactIndustry : Industry.values()) {
-            if (contactIndustry.getIndustry().equals(value)) {
+            if (contactIndustry.getChosenIndustry().equals(value)) {
                 return contactIndustry;
             }
         }
         return null;
     }
+
 }

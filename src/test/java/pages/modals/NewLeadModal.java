@@ -1,29 +1,51 @@
 package pages.modals;
 
+import elements.ComboBox;
 import elements.LightningInput;
+import elements.Textarea;
+import lombok.extern.log4j.Log4j2;
 import models.Lead;
 import org.openqa.selenium.WebDriver;
 
-
+@Log4j2
 public class NewLeadModal extends BaseModal {
     public NewLeadModal(WebDriver driver) {
         super(driver);
     }
-    public void fillForm(Lead inputLead){
+
+    public void fillForm(Lead inputLead) {
+        log.info("Filling form for a new Lead");
         new LightningInput(driver, "First Name").setValue(inputLead.getFirstName());
-        new LightningInput(driver, "Middle Name").setValue(inputLead.getMiddleName());
         new LightningInput(driver, "Last Name").setValue(inputLead.getLastName());
+        if (inputLead.getSalutation().getChosenSalutation() != null) {
+            new ComboBox(driver, "Salutation").selectOptionByVisibleText(inputLead.getSalutation().getChosenSalutation());
+        }
+        if (inputLead.getLeadStatus() != null) {
+            new ComboBox(driver, "Lead Status").selectOptionByVisibleText(inputLead.getLeadStatus().getChosenLeadStatus());
+        }
         new LightningInput(driver, "Company").setValue(inputLead.getCompany());
-        new LightningInput(driver, "Industry").setValue(inputLead.getMobile());
         new LightningInput(driver, "Phone").setValue(inputLead.getPhone());
         new LightningInput(driver, "Email").setValue(inputLead.getEmail());
-        new LightningInput(driver, "Mobile").setValue(inputLead.getMobile());
-        new LightningInput(driver, "Salutation").setValue(inputLead.getSalutation().toString());
-        new LightningInput(driver, "Rating").setValue(inputLead.getRating().toString());
-        new LightningInput(driver, "leadStatus").setValue(inputLead.getLeadStatus());
+        if (inputLead.getRating() != null) {
+            new ComboBox(driver, "Rating").selectOptionByVisibleText(inputLead.getRating().getChosenRating());
+        }
         new LightningInput(driver, "Title").setValue(inputLead.getTitle());
+        new Textarea(driver, "Street").setValueText(inputLead.getStreet());
+        new LightningInput(driver, "City").setValue(inputLead.getCity());
+        new LightningInput(driver, "Zip/Postal Code").setValue(inputLead.getZipCode());
+        new LightningInput(driver, "State/Province").setValue(inputLead.getState());
+        new LightningInput(driver, "Country").setValue(inputLead.getCountry());
         new LightningInput(driver, "Website").setValue(inputLead.getWebsite());
+        new LightningInput(driver, "No. of Employees").setValue(inputLead.getNumberOfEmployees());
+        if (inputLead.getLeadSource() != null) {
+            new ComboBox(driver, "Lead Source").selectOptionByVisibleText(inputLead.getLeadSource().getChosenLeadSource());
+        }
+        if (inputLead.getIndustry() != null) {
+            new ComboBox(driver, "Industry").selectOptionByVisibleText(inputLead.getIndustry().getChosenIndustry());
+        }
+
 
     }
 
-}
+    }
+

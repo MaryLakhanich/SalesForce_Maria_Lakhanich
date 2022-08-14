@@ -21,13 +21,16 @@ public enum AccountType {
     public String getTypeOfAccount() {
         return typeOfAccount;
     }
-
+    public String getChosenAccountType(){
+        return this.typeOfAccount;
+    }
     public static AccountType fromString(String value) {
         for (AccountType contactAccountType : AccountType.values()) {
-            if (contactAccountType.getTypeOfAccount().equals(value)) {
+            if (contactAccountType.getChosenAccountType().equals(value)) {
                 return contactAccountType;
             }
         }
         return null;
     }
+
 }

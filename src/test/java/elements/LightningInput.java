@@ -1,21 +1,28 @@
 package elements;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LightningInput extends BaseElement{
+import java.util.Objects;
 
-    private final static String INPUT_LOCATOR= "//div[@role='dialog' and @aria-modal='true']//*[text()= '%s']//following::div//input";
+@Log4j2
+public class LightningInput extends BaseElement {
+
+    private final static String INPUT_LOCATOR = "//label[@lightning-input_input and text()='%s']/ancestor::lightning-input//input";
 
     public LightningInput(WebDriver driver, String label) {
         super(driver, label);
     }
 
 
-    public void setValue(String value){
-        WebElement inputElement = driver.findElement(By.xpath(String.format(INPUT_LOCATOR, label)));
-        scrollIntoView(inputElement);
-        inputElement.sendKeys(value);
+    public void setValue(String value) {
+        if (Objects.nonNull(value)) {
+            WebElement inputElement = driver.findElement(By.xpath(String.format(INPUT_LOCATOR, label)));
+            log.debug(String.format("Setting %s LightningInput locator: %s value = %s", label, INPUT_LOCATOR, value));
+            scrollIntoView(inputElement);
+            inputElement.sendKeys(value);
+        }
     }
 }

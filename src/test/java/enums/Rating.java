@@ -5,17 +5,18 @@ public enum Rating {
     WARM("Warm"),
     COLD("Cold");
 
-    private String chosenRating;
-
-    Rating(String chosenRating) {
-        this.chosenRating = chosenRating;
+    public String getRating() {
+        return rating;
     }
 
+    private String rating;
 
+    Rating(String rating) {
+        this.rating = rating;
+    }
     public String getChosenRating() {
-        return chosenRating;
+        return this.rating;
     }
-
     public static Rating fromString(String value) {
         for (Rating contactRating : Rating.values()) {
             if (contactRating.getChosenRating().equals(value)) {

@@ -9,18 +9,21 @@ public enum Salutation {
     DR("Dr."),
     PROF("Prof.");;
 
-    private String name;
+    private String salutation;
 
-    Salutation(String name){
-        this.name=name;
+    Salutation(String salutation){
+        this.salutation=salutation;
+    }
+    public String getSalutation() {
+        return salutation;
+    }
+    public String getChosenSalutation() {
+        return this.salutation;
     }
 
-    public String getName() {
-        return name;
-    }
     public static Salutation fromString(String value) {
         for (Salutation contactSalutation : Salutation.values()) {
-            if (contactSalutation.getName().equals(value)) {
+            if (contactSalutation.getChosenSalutation().equals(value)) {
                 return contactSalutation;
             }
         }

@@ -2,14 +2,15 @@ package enums;
 
 public enum LeadSource {
     ADVERTISEMENT("Advertisement"),
-    EMPLOYEErEFERRAL("Employee Referral"),
+    CUSTOMEREVENT("Customer event"),
+    EMPLOYEEREFERRAL("Employee Referral"),
     EXTERNALREFERRAL("External Referral"),
-    INSTORE("In - Store"),
-    ONSITE("On Site"),
+    PARTNER("Partner"),
+    GOOGLEADWORDS("Coogle adWords"),
     OTHER("Other"),
     SOCIAL("Social"),
     TRADESHOW("Trade Show"),
-    WEB("Web"),
+    WEBINAR("Webinar"),
     WORDOFMOUTH("Word of mouth");
 
     private String leadSource;
@@ -28,6 +29,9 @@ public enum LeadSource {
             }
         }
         return null;
+    }
+    public String getChosenLeadSource(){
+        return this.leadSource;
     }
 
 
