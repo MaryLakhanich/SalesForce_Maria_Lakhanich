@@ -1,6 +1,6 @@
 package enums;
 
-public enum Industries {
+public enum Industry {
     AGRICULTURE("Agriculture"),
     APPAREL("Apparel"),
     BANKING("Banking"),
@@ -16,7 +16,7 @@ public enum Industries {
     ENTERTAINMENT("Entertainment"),
     ENVIRONMENTAL("Environmental"),
     FINANCE("Finance"),
-    FOODBEVERAGE("Food & Beverage"),
+    FOODANDBEVERAGE("Food & Beverage"),
     GOVERNMENT("Government"),
     HEALTHCARE("Healthcare"),
     HOSPITALITY("Hospitality"),
@@ -36,7 +36,23 @@ public enum Industries {
 
     private String industry;
 
-    Industries(String industry) {
+    Industry(String industry) {
         this.industry=industry;
     }
+
+    public String getIndustry() {
+        return industry;
+    }
+    public String getChosenIndustry(){
+        return this.industry;
+    }
+    public static Industry fromString(String value) {
+        for (Industry contactIndustry : Industry.values()) {
+            if (contactIndustry.getChosenIndustry().equals(value)) {
+                return contactIndustry;
+            }
+        }
+        return null;
+    }
+
 }
