@@ -24,12 +24,8 @@ public class NewAccountModal extends BaseModal {
         new InputForAccount(driver, "Phone").setValueAccount(inputAccount.getPhone());
         new InputForAccount(driver, "Website").setValueAccount(inputAccount.getWebsite());
         new InputForAccount(driver, "Employees").setValueAccount(inputAccount.getEmployees());
-        if (inputAccount.getAccountType() != null) {
-            new DropDownForAccount(driver, "Type").selectByVisibleAccountText(inputAccount.getAccountType().getChosenAccountType());
-        }
-        if (inputAccount.getIndustry() != null) {
-            new DropDownForAccount(driver, "Industry").selectByVisibleAccountText(inputAccount.getIndustry().getChosenIndustry());
-        }
+        new DropDownForAccount(driver, "Type").selectByVisibleAccountText(inputAccount.getAccountType().getChosenAccountType());
+        new DropDownForAccount(driver, "Industry").selectByVisibleAccountText(inputAccount.getIndustry().getChosenIndustry());
         new TextAreaAccount(driver, "Description").setValueTextAccount(inputAccount.getDescription());
         new TextAreaAccount(driver, "Billing Street").setValueTextAccount(inputAccount.getBillingStreet());
         new InputForAccount(driver, "Billing City").setValueAccount(inputAccount.getBillingCity());

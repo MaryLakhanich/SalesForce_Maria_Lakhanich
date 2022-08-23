@@ -6,9 +6,9 @@ import enums.Industry;
 import models.Account;
 
 public class AccountFactory {
-    Faker faker = new Faker();
+    static Faker faker = new Faker();
 
-    public Account createCompletelyFilledAccount() {
+    public static Account createCompletelyFilledAccount() {
         return Account.builder()
                 .accountName(faker.name().username())
                 .phone(faker.phoneNumber().phoneNumber())
@@ -29,7 +29,7 @@ public class AccountFactory {
                 .shippingCountry(faker.name().username())
                 .build();
     }
-    public Account createAccountWithMinimumItems() {
+    public static Account createAccountWithMinimumItems() {
         return Account.builder()
                 .accountName(faker.name().username())
                 .accountType(AccountType.ANALYST)

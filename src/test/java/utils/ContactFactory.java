@@ -6,9 +6,9 @@ import enums.Salutation;
 import models.Contact;
 
 public class ContactFactory {
-    Faker faker = new Faker();
+    static Faker faker = new Faker();
 
-    public Contact createCompletelyFilledContact() {
+    public static Contact createCompletelyFilledContact() {
         return Contact.builder()
                 .lastName(faker.name().lastName()).accountName("madelyn.stamm")
                 .firstName(faker.name().firstName())
@@ -37,7 +37,7 @@ public class ContactFactory {
                 .birthdate("01/05/1990")
                 .build();
     }
-    public Contact createContactWithMinimumItems(){
+    public static Contact createContactWithMinimumItems(){
         return Contact.builder()
                 .salutation(Salutation.MR)
                 .firstName(faker.name().firstName())

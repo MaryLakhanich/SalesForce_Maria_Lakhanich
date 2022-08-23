@@ -21,9 +21,7 @@ public class NewContactModal extends BaseModal {
         log.info("Filling form for a new Contact");
         new LightningInput(driver, "First Name").setValue(inputContact.getFirstName());
         new LightningInput(driver, "Last Name").setValue(inputContact.getLastName());
-        if (inputContact.getSalutation() != null) {
-            new ComboBox(driver, "Salutation").selectOptionByVisibleText(inputContact.getSalutation().getChosenSalutation());
-        }
+        new ComboBox(driver, "Salutation").selectOptionByVisibleText(inputContact.getSalutation().getChosenSalutation());
         new LightningInput(driver, "Phone").setValue(inputContact.getPhone());
         new LightningInput(driver, "Mobile").setValue(inputContact.getMobile());
         new LightningInput(driver, "Email").setValue(inputContact.getEmail());
@@ -46,9 +44,8 @@ public class NewContactModal extends BaseModal {
         new LightningInput(driver, "Asst. Phone").setValue(inputContact.getAsstPhone());
         new LightningInput(driver, "Assistant").setValue(inputContact.getAssistant());
         new LightningInput(driver, "Department").setValue(inputContact.getDepartment());
-        if (inputContact.getLeadSource() != null) {
-            new ComboBox(driver, "Lead Source").selectOptionByVisibleText(inputContact.getLeadSource().getChosenLeadSource());
-        }
+        new ComboBox(driver, "Lead Source").selectOptionByVisibleText(inputContact.getLeadSource().getChosenLeadSource());
+
         if (inputContact.getBirthdate() != null) {
             driver.findElement(BIRTHDATE).sendKeys(inputContact.getBirthdate());
         }

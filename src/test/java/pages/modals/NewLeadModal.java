@@ -17,18 +17,12 @@ public class NewLeadModal extends BaseModal {
         log.info("Filling form for a new Lead");
         new LightningInput(driver, "First Name").setValue(inputLead.getFirstName());
         new LightningInput(driver, "Last Name").setValue(inputLead.getLastName());
-        if (inputLead.getSalutation().getChosenSalutation() != null) {
-            new ComboBox(driver, "Salutation").selectOptionByVisibleText(inputLead.getSalutation().getChosenSalutation());
-        }
-        if (inputLead.getLeadStatus() != null) {
-            new ComboBox(driver, "Lead Status").selectOptionByVisibleText(inputLead.getLeadStatus().getChosenLeadStatus());
-        }
+        new ComboBox(driver, "Salutation").selectOptionByVisibleText(inputLead.getSalutation().getChosenSalutation());
+        new ComboBox(driver, "Lead Status").selectOptionByVisibleText(inputLead.getLeadStatus().getChosenLeadStatus());
         new LightningInput(driver, "Company").setValue(inputLead.getCompany());
         new LightningInput(driver, "Phone").setValue(inputLead.getPhone());
         new LightningInput(driver, "Email").setValue(inputLead.getEmail());
-        if (inputLead.getRating() != null) {
-            new ComboBox(driver, "Rating").selectOptionByVisibleText(inputLead.getRating().getChosenRating());
-        }
+        new ComboBox(driver, "Rating").selectOptionByVisibleText(inputLead.getRating().getChosenRating());
         new LightningInput(driver, "Title").setValue(inputLead.getTitle());
         new Textarea(driver, "Street").setValueText(inputLead.getStreet());
         new LightningInput(driver, "City").setValue(inputLead.getCity());
@@ -37,13 +31,8 @@ public class NewLeadModal extends BaseModal {
         new LightningInput(driver, "Country").setValue(inputLead.getCountry());
         new LightningInput(driver, "Website").setValue(inputLead.getWebsite());
         new LightningInput(driver, "No. of Employees").setValue(inputLead.getNumberOfEmployees());
-        if (inputLead.getLeadSource() != null) {
-            new ComboBox(driver, "Lead Source").selectOptionByVisibleText(inputLead.getLeadSource().getChosenLeadSource());
-        }
-        if (inputLead.getIndustry() != null) {
-            new ComboBox(driver, "Industry").selectOptionByVisibleText(inputLead.getIndustry().getChosenIndustry());
-        }
-
+        new ComboBox(driver, "Lead Source").selectOptionByVisibleText(inputLead.getLeadSource().getChosenLeadSource());
+        new ComboBox(driver, "Industry").selectOptionByVisibleText(inputLead.getIndustry().getChosenIndustry());
 
     }
 
